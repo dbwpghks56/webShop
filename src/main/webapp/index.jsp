@@ -19,6 +19,13 @@
         <form action="FirstServlet" method="post">
         	<input type="submit" value="firstservlet post">
         </form>
+        <ul>
+        	<li><a href="emp/emplist.do"> 모든 직원 조회 </a></li>
+        	<li><a href="dept/deptlist.do"> 모든 부서 조회 </a></li>
+        	<li><a href="board/boardlist.do"> 모든 게시판 조회 </a></li>
+        </ul>
+
+        
         <button id="btn1">get요청</button>
         <script type="text/javascript">
         	btn1.onclick = () => {
