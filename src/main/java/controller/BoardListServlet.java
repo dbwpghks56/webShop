@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dto.BoardDto;
+import dto.UserDto;
 import model.BoardService;
 
 /**
@@ -32,6 +34,16 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		UserDto user = (UserDto) session.getAttribute("user");
+		
+		if(user == null) {
+			System.out.println("로그인을 하지 않음...");
+			response.sendRedirect("../html/loginForm.html");
+			return;
+		}
+		
 		BoardService boardService = new BoardService();
 		List<BoardDto> boardlist = boardService.selectAll();
 		

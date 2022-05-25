@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,10 +33,14 @@ public class BoardInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		ServletContext app = getServletContext();
+		String name = (String)app.getAttribute("myname");
+		System.out.println(name);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("boardInsert.jsp");
 		rd.forward(request, response);
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -61,11 +66,14 @@ public class BoardInsertServlet extends HttpServlet {
 		
 		request.setAttribute("message", message);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
-		rd.forward(request, response);
+		// redirect : 주소창의 바꾼다.
+		response.sendRedirect("boardlist.do");
+		
+//		RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
+//		rd.forward(request, response); // 주소창을 바꾸지않는다. 요청과 응답이 다른 문서
 		
 		
-		doGet(request, response);
+		
 	}
 
 }
