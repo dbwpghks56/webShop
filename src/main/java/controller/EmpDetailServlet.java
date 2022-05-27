@@ -49,7 +49,7 @@ public class EmpDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+//		request.setCharacterEncoding("utf-8");
 		
 		String s_emp = request.getParameter("empno");
 		System.out.println(s_emp);

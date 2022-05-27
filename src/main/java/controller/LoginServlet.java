@@ -43,9 +43,9 @@ public class LoginServlet extends HttpServlet {
 //		
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("loginform.html");
+		RequestDispatcher rd = request.getRequestDispatcher("loginForm.jsp");
 		rd.forward(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -69,7 +69,13 @@ public class LoginServlet extends HttpServlet {
 		if(user == null) {
 			response.sendRedirect("login.do");
 		} else {
-			response.sendRedirect("../board/boardlist.do");
+			String path = (String)session.getAttribute("realpath");
+			
+			if(path==null) {
+				path = request.getContextPath() + "/index.jsp";
+			}
+			
+			response.sendRedirect("/webShop"+path);
 		}
 		
 //		System.out.println(id);

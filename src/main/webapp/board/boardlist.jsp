@@ -17,6 +17,10 @@
 <body>
 	<h1> 게시판 목록 </h1>
 	<a href="boardInsert.do"> 게시글 작성하기 </a>
+	${pageContext.request.contextPath}
+	<%@ include file="../common/header.jsp" %> <!-- 공통 코드는 이런 식으로 추가할 수 있다. 합치고 컴파일 -->
+	<jsp:include page="../common/header.jsp"></jsp:include><!-- 컴파일하고 합치기 -->
+	
 	<hr>
 	<table>
 		<tr>

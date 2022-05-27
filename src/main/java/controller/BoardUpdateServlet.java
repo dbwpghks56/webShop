@@ -39,7 +39,7 @@ public class BoardUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+//		request.setCharacterEncoding("utf-8");
 		
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		String title = request.getParameter("title");

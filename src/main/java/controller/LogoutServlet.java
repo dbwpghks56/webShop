@@ -1,9 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,21 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dto.BoardDto;
-import dto.UserDto;
-import model.BoardService;
-
 /**
- * Servlet implementation class BoardListServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/board/boardlist.do")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/logOut")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,17 +27,11 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardService boardService = new BoardService();
-		List<BoardDto> boardlist = boardService.selectAll();
+		HttpSession session = request.getSession();
+		session.invalidate(); // 세션 제거
 		
-		if(boardlist != null) {
-			request.setAttribute("boardlist", boardlist);
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("boardlist.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("html/login.do");
 		
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -56,14 +43,3 @@ public class BoardListServlet extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-

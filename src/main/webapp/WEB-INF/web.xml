@@ -17,6 +17,16 @@
 		<param-name>userpass</param-name>
 		<param-value>1234</param-value>
 	</context-param>
+	<!-- Filter 등록 => @WebFilter("/*")와 같다 -->
+	<filter>
+		<filter-name>encodeFilter</filter-name>
+		<filter-class>filterListener.EncodeFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodeFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
 	<servlet>
 		<servlet-name>second</servlet-name>
 		<servlet-class>controller.SecondServlet</servlet-class>
