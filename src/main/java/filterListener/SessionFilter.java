@@ -18,7 +18,7 @@ import dto.UserDto;
 /**
  * Servlet Filter implementation class SessionFilter
  */
-@WebFilter("/*")
+//@WebFilter("/*")
 public class SessionFilter extends HttpFilter implements Filter {
        
 
