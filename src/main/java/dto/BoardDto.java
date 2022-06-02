@@ -9,10 +9,11 @@ public class BoardDto {
 	private String writer;
 	private Date regDate;
 	private Date updateDate;
+	private String pic;
 	
 	public BoardDto() {}
 	
-	public BoardDto(int bno, String title, String content, String writer, Date regDate, Date updateDate) {
+	public BoardDto(int bno, String title, String content, String writer, Date regDate, Date updateDate, String pic) {
 		super();
 		this.bno = bno;
 		this.title = title;
@@ -20,6 +21,7 @@ public class BoardDto {
 		this.writer = writer;
 		this.regDate = regDate;
 		this.updateDate = updateDate;
+		this.pic = pic;
 	}
 	
 	public int getBno() {
@@ -59,12 +61,20 @@ public class BoardDto {
 		this.updateDate = updateDate;
 	}
 	
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("BoardDto [bno=").append(bno).append(", title=").append(title).append(", content=")
 				.append(content).append(", writer=").append(writer).append(", regDate=").append(regDate)
-				.append(", updateDate=").append(updateDate).append("]");
+				.append(", updateDate=").append(updateDate).append(", pic=").append(pic).append("]");
 		return builder.toString();
 	}
 	

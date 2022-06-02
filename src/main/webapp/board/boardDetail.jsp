@@ -20,6 +20,9 @@
 		작성자 : <input type="text" value="${board.writer }" readonly="readonly"> <br>
 		게시일 : <input type="text" value="${board.regDate }" readonly="readonly"> <br>
 		수정일 : <input type="text" value="${board.updateDate }" readonly="readonly"> <br>
+		이미지 : <a href="${pageContext.request.contextPath}/download.do?fileName=${board.pic}"> 
+					<img alt="" src="${pageContext.request.contextPath}/uploads/${board.pic}" width="200" height="200"> 
+				</a>
 		<input type="submit" value="수정하기">
 		<input type="reset" value="취소하기">
 	</form>

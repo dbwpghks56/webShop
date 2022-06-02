@@ -102,6 +102,7 @@ public class BoardDAO {
 		board.setTitle(rs2.getString("title"));
 		board.setUpdateDate(rs2.getDate("updatedate"));
 		board.setWriter(rs2.getString("writer"));
+		board.setPic(rs2.getString("pic"));
 		
 		return board;
 	}
@@ -157,10 +158,11 @@ public class BoardDAO {
 	public int insertBoard(BoardDto board) {
 		conn = DBUtil.getConnection();
 		try {
-			pst = conn.prepareStatement("insert into tbl_board values(seq_bno.nextval, ?, ?, ?, sysdate, sysdate)");
+			pst = conn.prepareStatement("insert into tbl_board values(seq_bno.nextval, ?, ?, ?, sysdate, sysdate, ?)");
 			pst.setString(1, board.getTitle());
 			pst.setString(2, board.getContent());
 			pst.setString(3, board.getWriter());
+			pst.setString(4, board.getPic());
 			
 			result = pst.executeUpdate();
 			

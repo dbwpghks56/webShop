@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dto.BoardDto;
 import model.BoardService;
+import util.UploadFileHelper;
 
 /**
  * Servlet implementation class BoardInsertServlet
@@ -54,7 +57,25 @@ public class BoardInsertServlet extends HttpServlet {
 		String writer = request.getParameter("writer");
 		String message = "등록실패";
 		
-		BoardDto board = new BoardDto(0, title, content, writer, null, null);
+		Map<String, Object> map = UploadFileHelper.uploadFile("uploads", request);
+		
+		List<String> pics = (List<String>)map.get("potos");
+		String pic = pics.get(0);
+		
+//		Map<String, Object> map = (Map<String, Object>)UploadFileHelper.uploadFile("uploads", request);
+//		List<String> fileNames = (List<String>)map.get("potos");
+//		Map<String, String> mapParam = (Map<String, String>)map.get("params");
+//		String pic = fileNames.get(0);
+//		BoardDto board = new BoardDto();
+//		for(String key:mapParam.keySet()) {
+//			if(key.equals("title")) board.setTitle(mapParam.get(key));
+//			if(key.equals("content")) board.setContent(mapParam.get(key));
+//			if(key.equals("writer")) board.setWriter(Integer.parseInt(mapParam.get(key)));
+//		}
+//		board.setPic(pic);
+		
+		
+		BoardDto board = new BoardDto(0, title, content, writer, null, null, pic);
 		
 		BoardService service = new BoardService();
 		
@@ -68,6 +89,7 @@ public class BoardInsertServlet extends HttpServlet {
 		
 		// redirect : 주소창의 바꾼다.
 		response.sendRedirect("boardlist.do");
+		System.out.println(board);
 		
 //		RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
 //		rd.forward(request, response); // 주소창을 바꾸지않는다. 요청과 응답이 다른 문서

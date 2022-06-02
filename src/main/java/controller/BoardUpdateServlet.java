@@ -48,7 +48,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		
 		BoardService service = new BoardService();
 		
-		BoardDto board = new BoardDto(bno, title, content,null,null,null);
+		BoardDto board = new BoardDto(bno, title, content,null,null,null,null);
 		
 		int result = service.updateBoard(board, bno);
 		
